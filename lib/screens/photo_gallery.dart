@@ -47,14 +47,19 @@ class _PhotoGalleryState extends State<PhotoGallery> {
               break;
             case ConnectionState.done:
               return SafeArea(
-                child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 6,
-                        mainAxisSpacing: 6),
-                    itemBuilder: (context, index) {
-                      return Container();
-                    }),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    itemCount: snapshot.data?.length ?? 0,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 6,
+                          mainAxisSpacing: 6),
+                      itemBuilder: (context, index) {
+                        return Image.network(snapshot.data![index],
+                        fit: BoxFit.cover,);
+                      }),
+                ),
               );
               break;
           }
