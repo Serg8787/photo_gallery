@@ -11,7 +11,8 @@ class PhotoGallery extends StatefulWidget {
 
 class _PhotoGalleryState extends State<PhotoGallery> {
 
-  Future<List<String>>? images;
+  // Future<List<String>>? images;
+  List<String>? images;
 
   Future<List<String>> getImages() async {
     List<String> images = [];
@@ -21,7 +22,7 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     List<dynamic> hitsList = data["hits"] as List;
 
     for (int i = 0; i < hitsList.length; i++) {
-      images.add(hitsList[i]["largeImageUrl"]);
+      images.add(hitsList[i]["largeImageURL"]);
     }
     return images;
   }
@@ -29,9 +30,10 @@ class _PhotoGalleryState extends State<PhotoGallery> {
     @override
     void initState() {
       super.initState();
-     images = getImages();
+     // images = getImages();
+      getImages().then((value) => print(value));
     }
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
