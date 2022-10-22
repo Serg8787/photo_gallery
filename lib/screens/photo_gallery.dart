@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:photo_gallery/keys.dart';
+import 'package:photo_gallery/services/network_helper.dart';
 
 class PhotoGallery extends StatefulWidget {
 
@@ -8,6 +10,17 @@ class PhotoGallery extends StatefulWidget {
 }
 
 class _PhotoGalleryState extends State<PhotoGallery> {
+
+  List<String>? images;
+
+  Future<List<String>> getImages() async {
+
+    List<String> images = [];
+    String url = "https://pixabay.com/api/?key=$pixabayApiKey&per_page=30&image_type=photo";
+    NetworkHelper networkHelper = NetworkHelper(url: url);
+    dynamic data = await networkHelper.getData();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
